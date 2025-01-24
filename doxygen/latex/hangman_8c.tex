@@ -1,0 +1,228 @@
+\doxysection{hangman.\+c File Reference}
+\hypertarget{hangman_8c}{}\label{hangman_8c}\index{hangman.c@{hangman.c}}
+
+
+This is the main file for the Hangman game.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{hangman_8c_a4d9cff990081d5bd36a02d192f240e08}{log\+\_\+current\+\_\+time}} (FILE \texorpdfstring{$\ast$}{*}logginfile)
+\begin{DoxyCompactList}\small\item\em Generates the name of the log file using the current date and time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hangman_8c_a33592ad5989d4d274663fbdb51c110f0}{display\+\_\+word\+\_\+to\+\_\+guess}} (char \texorpdfstring{$\ast$}{*}word, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Displays the word to guess with underscores for unguessed letters. //! func für The word to guess is\+: \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ (n letters) //!size\+\_\+t wird verwendet, weil man jede Möglichkeit bedecken will und nicht weißt wie groß die variable wird. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{hangman_8c_a6a885fea32d37652c9e2f1deba37381d}{vergleich\+\_\+guess\+\_\+mit\+\_\+word}} (int length, char guess, const char \texorpdfstring{$\ast$}{*}array, int \texorpdfstring{$\ast$}{*}round, int \texorpdfstring{$\ast$}{*}attempts, char \texorpdfstring{$\ast$}{*}wordsofar, char \texorpdfstring{$\ast$}{*}false)
+\begin{DoxyCompactList}\small\item\em Compares the guessed letter with the word and updates the game state. //! func was einzelne buchstaben vergleicht und wenn ein ganzes wort eingeben wird vergleicht sie die beide strings mit string compare. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{hangman_8c_a5b09ac69bb07894829b689a42b6da743}{select\+\_\+random\+\_\+wort}} (FILE \texorpdfstring{$\ast$}{*}file, char array\+\_\+word\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Selects a random word from a file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{hangman_8c_ade60bdcaa8177228690e987105f6863e}{nur\+\_\+letter}} (char guess\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Validates that the input consists only of letters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hangman_8c_a0709a1c948e727e350822bc446e23562}{func\+\_\+galge}} (FILE \texorpdfstring{$\ast$}{*}logfile, int \texorpdfstring{$\ast$}{*}attempts, char \texorpdfstring{$\ast$}{*}word)
+\begin{DoxyCompactList}\small\item\em Displays the hangman\textquotesingle{}s gallows based on the number of attempts left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hangman_8c_a671c19b6aea19e9d4af08e7dd0dee183}{func\+\_\+outputs}} (int length, char \texorpdfstring{$\ast$}{*}word, char \texorpdfstring{$\ast$}{*}wordsofar, char \texorpdfstring{$\ast$}{*}falsewordsofar, int \texorpdfstring{$\ast$}{*}round, int \texorpdfstring{$\ast$}{*}attempts, FILE \texorpdfstring{$\ast$}{*}logfile)
+\begin{DoxyCompactList}\small\item\em Handles the main game loop, including user input and game state updates. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hangman_8c_aa8ca6abe867e583af031a0b0db21bcea}{reset\+\_\+all\+\_\+status}} (FILE \texorpdfstring{$\ast$}{*}file)
+\begin{DoxyCompactList}\small\item\em Resets the status of all words in the word list file to 0. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{hangman_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em The main function to run the Hangman game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the main file for the Hangman game. 
+
+\begin{DoxyAuthor}{Author}
+Ömer GÜ\+NER(ic24b071) 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{hangman_8c_a33592ad5989d4d274663fbdb51c110f0}\index{hangman.c@{hangman.c}!display\_word\_to\_guess@{display\_word\_to\_guess}}
+\index{display\_word\_to\_guess@{display\_word\_to\_guess}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{display\_word\_to\_guess()}{display\_word\_to\_guess()}}
+{\footnotesize\ttfamily \label{hangman_8c_a33592ad5989d4d274663fbdb51c110f0} 
+void display\+\_\+word\+\_\+to\+\_\+guess (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{word}{, }\item[{size\+\_\+t}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Displays the word to guess with underscores for unguessed letters. //! func für The word to guess is\+: \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ \+\_\+ (n letters) //!size\+\_\+t wird verwendet, weil man jede Möglichkeit bedecken will und nicht weißt wie groß die variable wird. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The word to guess. \\
+\hline
+{\em length} & The length of the word. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{hangman_8c_a0709a1c948e727e350822bc446e23562}\index{hangman.c@{hangman.c}!func\_galge@{func\_galge}}
+\index{func\_galge@{func\_galge}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{func\_galge()}{func\_galge()}}
+{\footnotesize\ttfamily \label{hangman_8c_a0709a1c948e727e350822bc446e23562} 
+void func\+\_\+galge (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{logfile}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{attempts}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{word}{}\end{DoxyParamCaption})}
+
+
+
+Displays the hangman\textquotesingle{}s gallows based on the number of attempts left. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em logfile} & Pointer to the log file. \\
+\hline
+{\em attempts} & Pointer to the remaining attempts. \\
+\hline
+{\em word} & The word to guess. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{hangman_8c_a671c19b6aea19e9d4af08e7dd0dee183}\index{hangman.c@{hangman.c}!func\_outputs@{func\_outputs}}
+\index{func\_outputs@{func\_outputs}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{func\_outputs()}{func\_outputs()}}
+{\footnotesize\ttfamily \label{hangman_8c_a671c19b6aea19e9d4af08e7dd0dee183} 
+void func\+\_\+outputs (\begin{DoxyParamCaption}\item[{int}]{length}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{word}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{wordsofar}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{falsewordsofar}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{round}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{attempts}{, }\item[{FILE \texorpdfstring{$\ast$}{*}}]{logfile}{}\end{DoxyParamCaption})}
+
+
+
+Handles the main game loop, including user input and game state updates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & Length of the word. \\
+\hline
+{\em word} & The word to guess. \\
+\hline
+{\em wordsofar} & Array representing the current state of guessed letters. \\
+\hline
+{\em falsewordsofar} & Array of letters not in the word. \\
+\hline
+{\em round} & Pointer to the current round number. \\
+\hline
+{\em attempts} & Pointer to the remaining attempts. \\
+\hline
+{\em logfile} & Pointer to the log file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{hangman_8c_a4d9cff990081d5bd36a02d192f240e08}\index{hangman.c@{hangman.c}!log\_current\_time@{log\_current\_time}}
+\index{log\_current\_time@{log\_current\_time}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{log\_current\_time()}{log\_current\_time()}}
+{\footnotesize\ttfamily \label{hangman_8c_a4d9cff990081d5bd36a02d192f240e08} 
+void log\+\_\+current\+\_\+time (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{logginfile}{}\end{DoxyParamCaption})}
+
+
+
+Generates the name of the log file using the current date and time. 
+
+used referense code \+: //source \+: \href{https://stackoverflow.com/questions/26900122/c-program-to-print-current-time}{\texttt{ https\+://stackoverflow.\+com/questions/26900122/c-\/program-\/to-\/print-\/current-\/time}} 
+\begin{DoxyParams}{Parameters}
+{\em log\+File\+Name} & The buffer to store the generated log file name. \\
+\hline
+{\em size} & The size of the buffer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{hangman_8c_a0ddf1224851353fc92bfbff6f499fa97}\index{hangman.c@{hangman.c}!main@{main}}
+\index{main@{main}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{hangman_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+The main function to run the Hangman game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of command-\/line arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on successful execution, 1 on error. 
+\end{DoxyReturn}
+\Hypertarget{hangman_8c_ade60bdcaa8177228690e987105f6863e}\index{hangman.c@{hangman.c}!nur\_letter@{nur\_letter}}
+\index{nur\_letter@{nur\_letter}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{nur\_letter()}{nur\_letter()}}
+{\footnotesize\ttfamily \label{hangman_8c_ade60bdcaa8177228690e987105f6863e} 
+int nur\+\_\+letter (\begin{DoxyParamCaption}\item[{char}]{guess}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Validates that the input consists only of letters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em guess} & The input to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the input is valid, 0 otherwise. 
+\end{DoxyReturn}
+\Hypertarget{hangman_8c_aa8ca6abe867e583af031a0b0db21bcea}\index{hangman.c@{hangman.c}!reset\_all\_status@{reset\_all\_status}}
+\index{reset\_all\_status@{reset\_all\_status}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{reset\_all\_status()}{reset\_all\_status()}}
+{\footnotesize\ttfamily \label{hangman_8c_aa8ca6abe867e583af031a0b0db21bcea} 
+void reset\+\_\+all\+\_\+status (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{file}{}\end{DoxyParamCaption})}
+
+
+
+Resets the status of all words in the word list file to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file containing the words. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{hangman_8c_a5b09ac69bb07894829b689a42b6da743}\index{hangman.c@{hangman.c}!select\_random\_wort@{select\_random\_wort}}
+\index{select\_random\_wort@{select\_random\_wort}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{select\_random\_wort()}{select\_random\_wort()}}
+{\footnotesize\ttfamily \label{hangman_8c_a5b09ac69bb07894829b689a42b6da743} 
+char \texorpdfstring{$\ast$}{*} select\+\_\+random\+\_\+wort (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{char}]{array\+\_\+word}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Selects a random word from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file containing the words. \\
+\hline
+{\em array\+\_\+word} & Array to store the selected word. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the selected word, or NULL if no word is found. 
+\end{DoxyReturn}
+\Hypertarget{hangman_8c_a6a885fea32d37652c9e2f1deba37381d}\index{hangman.c@{hangman.c}!vergleich\_guess\_mit\_word@{vergleich\_guess\_mit\_word}}
+\index{vergleich\_guess\_mit\_word@{vergleich\_guess\_mit\_word}!hangman.c@{hangman.c}}
+\doxysubsubsection{\texorpdfstring{vergleich\_guess\_mit\_word()}{vergleich\_guess\_mit\_word()}}
+{\footnotesize\ttfamily \label{hangman_8c_a6a885fea32d37652c9e2f1deba37381d} 
+int vergleich\+\_\+guess\+\_\+mit\+\_\+word (\begin{DoxyParamCaption}\item[{int}]{length}{, }\item[{char}]{guess}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{array}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{round}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{attempts}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{wordsofar}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{false}{}\end{DoxyParamCaption})}
+
+
+
+Compares the guessed letter with the word and updates the game state. //! func was einzelne buchstaben vergleicht und wenn ein ganzes wort eingeben wird vergleicht sie die beide strings mit string compare. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & Length of the word. \\
+\hline
+{\em guess} & The guessed letter. \\
+\hline
+{\em array} & The word to guess. \\
+\hline
+{\em round} & Pointer to the current round number. \\
+\hline
+{\em attempts} & Pointer to the remaining attempts. \\
+\hline
+{\em wordsofar} & Array representing the current state of guessed letters. \\
+\hline
+{\em false} & Array of letters not in the word. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of the comparison (0 = incorrect, 1 = correct, 2 = word complete, 3 = already guessed). 
+\end{DoxyReturn}
+\href{https://www.geeksforgeeks.org/strchr-in-c/}{\texttt{ https\+://www.\+geeksforgeeks.\+org/strchr-\/in-\/c/}}
